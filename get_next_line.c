@@ -6,7 +6,7 @@
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 09:58:29 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/25 15:39:46 by tbatteux         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:51:53 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	main()
 	fd = open("texte.txt", O_RDONLY);
 	if (fd == -1)
 		return (1);
+	printf("%s", get_next_line(fd));
+	printf("\n");
 	printf("%s", get_next_line(fd));
 	printf("\n");
 	printf("%s", get_next_line(fd));
