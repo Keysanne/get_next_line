@@ -16,17 +16,42 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+int	is_valid(char *str)
+{
+	//vérifie que la chaine est valide (contient un \n)
+}
+char	*recup_reste(char *lu)
+{
+	char	*reste;
+
+	//parcourir la chaine jusqu'au premier \n si 0 copier la chaine 
+}
+
+char	*recup_ligne(char *lu, int ret)
+{
+	char	*ligne;
+
+	//copier la chaine jusqu'au premier \n si 0 read à nouveau 
+	// si 0 \n et ret = 0 copier toute la chaine 
+}
+
 char	*get_next_line(int fd)
 {
-	char	*buf;
-	int		ret;
-	static int	b;
+	char	*lu;
+	int	ret;
+	static char	*reste;
 
-	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	ret = read(fd, buf, BUFFER_SIZE);
-	b++;
-	printf("%d\n", b);
-	return (buf);
+	lu = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (ret = read(fd, lu, BUFFER_SIZE) < 0 || fd < 0);
+	{
+		free(lu);
+		return (NULL);
+	}
+	lu[ret] = 0;
+	lu = ft_strjoin(reste, lu);
+	reste = recup_reste(lu);
+	lu = recup_ligne(lu, ret);
+	return (lu);
 }
 /*
 int	main()
@@ -37,9 +62,7 @@ int	main()
 	if (fd == -1)
 		return (1);
 	printf("%s", get_next_line(fd));
-	printf("\n");
 	printf("%s", get_next_line(fd));
-	printf("\n");
 	printf("%s", get_next_line(fd));
 	if (close(fd) != -1);
 		return (0);

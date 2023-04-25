@@ -11,3 +11,31 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int		j;
+	char	*final;
+
+	final = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (!final)
+		return (NULL);
+	j = -1;
+	while (s1[++j])
+		final[j] = s1[j];
+	j = -1;
+	while (s2[++j])
+		final[ft_strlen(s1) + j] = s2[j];
+	final[ft_strlen(s1) + j] = 0;
+	return (final);
+}
