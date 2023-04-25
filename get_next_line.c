@@ -6,7 +6,7 @@
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 09:58:29 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/25 15:51:53 by tbatteux         ###   ########.fr       */
+/*   Updated: 2023/04/25 16:07:59 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,16 @@
 char	*get_next_line(int fd)
 {
 	char	*buf;
-	int	ret;
+	int		ret;
+	static int	b;
 
 	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	ret = read(fd, buf, BUFFER_SIZE);
+	b++;
+	printf("%d\n", b);
 	return (buf);
 }
-
+/*
 int	main()
 {
 	int	fd;
@@ -41,4 +44,4 @@ int	main()
 	if (close(fd) != -1);
 		return (0);
 	return (0);
-}
+}*/
