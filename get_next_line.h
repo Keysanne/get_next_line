@@ -6,7 +6,7 @@
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 09:57:50 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/25 15:22:06 by tbatteux         ###   ########.fr       */
+/*   Updated: 2023/04/26 11:49:31 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 25
+#  define BUFFER_SIZE 35
 # endif
 
 char	*get_next_line(int fd);

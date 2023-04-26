@@ -6,7 +6,7 @@
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 09:58:29 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/25 16:07:59 by tbatteux         ###   ########.fr       */
+/*   Updated: 2023/04/26 12:38:01 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,42 +18,91 @@
 
 int	is_valid(char *str)
 {
-	//vérifie que la chaine est valide (contient un \n)
+	int	i;
+	int	j;
+
+	j = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			j++;
+		i++;
+	}
+	if (j == 0)
+		return (1);
+	return (0);
 }
 char	*recup_reste(char *lu)
 {
 	char	*reste;
+	int		i;
+	int		j;
 
-	//parcourir la chaine jusqu'au premier \n si 0 copier la chaine 
+	i = 0;
+	j = 0;
+	if (is_valid(lu) == 0)
+	{
+		while (lu[i] != '\n')
+			i++;
+		while (lu[i])
+			reste[j++] = lu[i++];
+	}
+	else
+		while (lu[i])
+			reste[j++] = lu[i++];
+	reste[j] = 0;
+	return (reste);
 }
 
-char	*recup_ligne(char *lu, int ret)
+char	*recup_ligne(char *lu, int ret, int fd)
 {
+	char	*relire;
 	char	*ligne;
+	int		i;
 
-	//copier la chaine jusqu'au premier \n si 0 read à nouveau 
-	// si 0 \n et ret = 0 copier toute la chaine 
+	i = 0;
+	if (is_valid(lu) == 1 && ret < BUFFER_SIZE)
+		return (lu);
+	while (is_valid(lu) == 1 && ret == BUFFER_SIZE)
+	{
+		relire = malloc((BUFFER_SIZE + 1) * sizeof(char));
+		if (!relire)
+			return (NULL);
+		ret = read(fd, relire, BUFFER_SIZE);
+		lu = ft_strjoin(lu, relire);
+		free(relire);
+	}
+	while (lu[i - 1] != '\n')
+	{
+		ligne[i] = lu[i];
+		i++;
+	}
+	ligne[i] = 0;
+	free(lu);
+	printf("%s", ligne);
+	return (ligne);
 }
 
 char	*get_next_line(int fd)
 {
 	char	*lu;
 	int	ret;
-	static char	*reste;
+	static char	reste[] = "";
 
-	lu = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (ret = read(fd, lu, BUFFER_SIZE) < 0 || fd < 0);
-	{
-		free(lu);
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	}
-	lu[ret] = 0;
+	lu = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!lu)
+		return (NULL);
+	ret = read(fd, lu, BUFFER_SIZE);
 	lu = ft_strjoin(reste, lu);
-	reste = recup_reste(lu);
-	lu = recup_ligne(lu, ret);
+	//reste = recup_reste(lu);
+	printf("%s\n", reste);
+	lu = recup_ligne(lu, ret, fd);
 	return (lu);
 }
-/*
+
 int	main()
 {
 	int	fd;
@@ -61,10 +110,10 @@ int	main()
 	fd = open("texte.txt", O_RDONLY);
 	if (fd == -1)
 		return (1);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
+	get_next_line(fd);
+	get_next_line(fd);
+	get_next_line(fd);
 	if (close(fd) != -1);
 		return (0);
 	return (0);
-}*/
+}
