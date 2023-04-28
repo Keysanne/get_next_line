@@ -108,14 +108,14 @@ int	main(void)
 		return (1);
 	recup = get_next_line(fd);
 	printf("%s", recup);
-	recup = get_next_line(fd);
+	/*recup = get_next_line(fd);
 	printf("%s", recup);
 	recup = get_next_line(fd);
 	printf("%s", recup);
 	recup = get_next_line(fd);
 	printf("%s", recup);
 	recup = get_next_line(fd);
-	printf("%s", recup);
+	printf("%s", recup);*/
          free(recup);
 	if (close(fd) != -1)
 		return (0);
