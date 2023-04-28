@@ -97,7 +97,7 @@ char	*get_next_line(int fd)
 	lu = recup_ligne(ligne, ret, fd);
 	return (lu);
 }
-/*
+
 int	main(void)
 {
 	int		fd;
@@ -112,8 +112,12 @@ int	main(void)
 	printf("%s", recup);
 	recup = get_next_line(fd);
 	printf("%s", recup);
+	recup = get_next_line(fd);
+	printf("%s", recup);
+	recup = get_next_line(fd);
+	printf("%s", recup);
          free(recup);
 	if (close(fd) != -1)
 		return (0);
 	return (0);
-}*/
+}
