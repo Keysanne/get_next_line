@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tbatteux <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/25 09:59:15 by tbatteux          #+#    #+#             */
-/*   Updated: 2023/04/25 10:02:45 by tbatteux         ###   ########.fr       */
+/*   Created: 2023/04/28 13:11:24 by tbatteux          #+#    #+#             */
+/*   Updated: 2023/04/28 15:53:41 by tbatteux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,28 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strdup(const char *s)
+{
+	char	*final;
+	int		i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	final = malloc ((i + 1) * sizeof(char));
+	if (!final)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		final[i] = s[i];
+		i++;
+	}
+	final[i] = 0;
+	return (final);
+}
+
+char	*ft_strjoin(char *s1, char const *s2)
 {
 	int		j;
 	char	*final;
