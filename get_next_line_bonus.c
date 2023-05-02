@@ -10,25 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static t_list	*stash = NULL;
+	static t_list	*stash[FD];
 	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
 		return (NULL);
 	line = NULL;
-	read_and_stash(fd, &stash);
-	if (stash == NULL)
+	read_and_stash(fd, &stash[FD]);
+	if (stash[FD] == NULL)
 		return (NULL);
-	extract_line(stash, &line);
-	clean_stash(&stash);
+	extract_line(stash[FD], &line);
+	clean_stash(&stash[FD]);
 	if (line[0] == '\0')
 	{
-		free_stash(stash);
-		stash = NULL;
+		free_stash(stash[FD]);
+		stash[FD] = NULL;
 		free(line);
 		return (NULL);
 	}
