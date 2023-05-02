@@ -13,7 +13,7 @@
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
-# include <stdio.h> // REMOVE FOR PUSH
+# include <stdio.h>
 # include <stdlib.h>
 
 # include <sys/types.h>
@@ -24,8 +24,8 @@
 #  define BUFFER_SIZE 5
 # endif
 
-# ifndef FD
-#  define FD 1024
+# ifndef FD_LIMITS
+#  define FD_LIMITS 1024
 # endif
 
 typedef struct s_list

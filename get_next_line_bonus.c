@@ -14,21 +14,21 @@
 
 char	*get_next_line(int fd)
 {
-	static t_list	*stash[FD];
+	static t_list	*stash[FD_LIMITS];
 	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, &line, 0) < 0)
 		return (NULL);
 	line = NULL;
-	read_and_stash(fd, &stash[FD]);
-	if (stash[FD] == NULL)
+	read_and_stash(fd, &stash[fd]);
+	if (stash[fd] == NULL)
 		return (NULL);
-	extract_line(stash[FD], &line);
-	clean_stash(&stash[FD]);
+	extract_line(stash[fd], &line);
+	clean_stash(&stash[fd]);
 	if (line[0] == '\0')
 	{
-		free_stash(stash[FD]);
-		stash[FD] = NULL;
+		free_stash(stash[fd]);
+		stash[fd] = NULL;
 		free(line);
 		return (NULL);
 	}
